@@ -12,10 +12,11 @@
 </head>
 <body>
 <div class="container">
+	<p class="text-center text-success" th:text="${msg}"></p>
 	<div class="row justify-content-center align-items-center">
 		<h1 class="display-4">KYC to open an account</h1>
 		<div class="text-primary">
-			<form action="#" method="post">
+			<form action="#" th:action="@{/add}" method="post" th:object=${obj}>
 				<div class="form group">
 					<label for="accHolder">Enter the name</label>
 					<input type="text" class="form-control" name="accHolder" placeholder="Holdername">
