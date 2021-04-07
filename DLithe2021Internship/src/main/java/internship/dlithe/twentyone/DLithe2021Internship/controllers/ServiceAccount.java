@@ -16,4 +16,9 @@ public class ServiceAccount
 		repo.save(account);
 		return account.getAccHolder();
 	}
+	
+	public Account fetchOne(Long data)
+	{
+		return repo.findById(data).orElse(new Account());
+	}
 }

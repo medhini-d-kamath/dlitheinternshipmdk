@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import internship.dlithe.twentyone.DLithe2021Internship.model.Account;
 
@@ -14,6 +15,28 @@ public class AccountController
 {
 	@Autowired
 	ServiceAccount service;
+	
+	@RequestMapping("/")
+	public String open()
+	{
+		return "index";
+	}
+	
+	@RequestMapping(value="/log",method=RequestMethod.POST)
+	public String logging(Model model,@RequestParam("user") Long user,@RequestParam("pass") String pass)
+	{
+		Account tmp=service.fetchOne(user);
+		if(tmp.getPassword()!=null&&tmp.getPassword().equals(pass))
+		{
+			model.addAttribute("username", tmp.getAccHolder());
+			return "home";
+		}
+		else
+		{
+			model.addAttribute("msg", "Invalid account/password");
+			return "index";
+		}
+	}
 	
 	@RequestMapping("/sign")
 	public String kyc(Model model)
