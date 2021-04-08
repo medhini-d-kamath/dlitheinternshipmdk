@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Axis Home</title>
+<title>Beneficiaries</title>
 <!-- CSS only -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <!-- JS, Popper.js, and jQuery -->
@@ -12,8 +12,11 @@
 </head>
 <body>
 <div class="container">
-	<p class="text-center text-primary display-4" th:text="${username}"> Welcome back</p>
-	<a th:href="@{/manage}" class="btn btn-outline-warning badge-pill">Manage beneficiary</a>
+	<p th:text="${info}" class="text-success text-center"></p>
+	<div>
+		<a href="#" th:href="@{/addNew}" class="btn btn-outline-success">Add Beneficiary</a>
+	</div>
+	
 </div>
 </body>
 </html>

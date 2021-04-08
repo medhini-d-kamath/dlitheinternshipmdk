@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import internship.dlithe.twentyone.DLithe2021Internship.model.Account;
+import internship.dlithe.twentyone.DLithe2021Internship.model.Beneficiary;
 
 @Controller
 public class AccountController 
 {
 	@Autowired
 	ServiceAccount service;
+	
+	@Autowired
+	ServiceBeneficiary benserv;
 	
 	@RequestMapping("/")
 	public String open()
@@ -52,5 +56,27 @@ public class AccountController
 		String name=service.insert(holder);
 		model.addAttribute("msg", name);
 		return "signup";
+	}
+	
+	@RequestMapping("/manage")
+	public String managing()
+	{
+		return "beneficiaries";
+	}
+	
+	@RequestMapping("/addNew")
+	public String adding(Model model)
+	{
+		Beneficiary ben=new Beneficiary();
+		model.addAttribute("object", ben);
+		return "create";
+	}
+	
+	@RequestMapping(value="/keep",method=RequestMethod.POST)
+	public String added(Model model,@ModelAttribute("benef") Beneficiary benef)
+	{
+		benserv.add(benef);
+		model.addAttribute("info",benef.getName()+" has added");
+		return "beneficiaries";
 	}
 }
