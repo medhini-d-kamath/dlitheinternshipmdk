@@ -6,10 +6,13 @@ import org.mockito.Mock;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -68,5 +71,16 @@ class DLithe2021InternshipApplicationTests
 		Beneficiary ben1=new Beneficiary(12323121212L, "Aravind", "ABCDE00001", "Indian Bank");
 		when(benrepo.save(ben)).thenReturn(ben);
 		assertTrue(servben.add(ben).equals(ben));
+	}
+	
+	@Test
+	public void testBeneficiaries()
+	{
+		when(benrepo.findAll()).thenReturn(Stream.of(new Beneficiary(98765672343L,null,"abcd1234e","Canara Bank"),
+				new Beneficiary(8767232223L,"Sabarinathan","12323abcd","Indian Bank"),
+				new Beneficiary(123234323423L,"Richard","abcd1234e","Canara Bank")).collect(Collectors.toList()));
+		assertEquals(3, servben.getAll().size());
+		assertNotNull(servben.getAll().get(2).getName());
+		assertNull(servben.getAll().get(0).getName());
 	}
 }

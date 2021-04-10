@@ -1,9 +1,12 @@
 package internship.dlithe.twentyone.DLithe2021Internship.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +17,9 @@ import internship.dlithe.twentyone.DLithe2021Internship.model.Beneficiary;
 @Controller
 public class AccountController 
 {
+	
+	List<Beneficiary> every;
+	
 	@Autowired
 	ServiceAccount service;
 	
@@ -59,8 +65,10 @@ public class AccountController
 	}
 	
 	@RequestMapping("/manage")
-	public String managing()
+	public String managing(Model model)
 	{
+		every=benserv.getAll();
+		model.addAttribute("all", every);
 		return "beneficiaries";
 	}
 	
@@ -77,6 +85,16 @@ public class AccountController
 	{
 		benserv.add(benef);
 		model.addAttribute("info",benef.getName()+" has added");
+		every=benserv.getAll();
+		model.addAttribute("all", every);
 		return "beneficiaries";
+	}
+	
+	@RequestMapping("/edit/{id}")
+	public String letEdit(Model model,@PathVariable("id") Long id)
+	{
+		Beneficiary ben=benserv.extractOne(id).orElse(new Beneficiary());
+		model.addAttribute("object", ben);
+		return "change";
 	}
 }
