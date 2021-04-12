@@ -8,6 +8,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -82,5 +83,14 @@ class DLithe2021InternshipApplicationTests
 		assertEquals(3, servben.getAll().size());
 		assertNotNull(servben.getAll().get(2).getName());
 		assertNull(servben.getAll().get(0).getName());
+	}
+	
+	@Test
+	public void testUpdate()
+	{
+		Beneficiary ben=new Beneficiary(9876545678L, "Aravind", "ABCDE00001", "Indian Bank");
+		Beneficiary ben1=new Beneficiary(12323121212L, "Aravind", "ABCDE00001", "Indian Bank");
+		when(benrepo.save(ben)).thenReturn(ben);
+		assertNotEquals("Andhra bank", servben.add(ben).getBank());
 	}
 }

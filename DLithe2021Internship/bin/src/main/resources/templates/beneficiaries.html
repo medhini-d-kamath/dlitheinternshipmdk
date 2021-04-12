@@ -25,7 +25,6 @@
 						<th>Beneficiary Account Number</th>
 						<th>Beneficiary IFSC Code</th>
 						<th>Beneficiary Bank</th>
-						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody class="bg-primary text-light">
@@ -37,10 +36,10 @@
 						<td>
 							<div class="row">
 								<div class="col">
-									<a href="#" th:href="@{'/edit/'+${it.accountNumber}}" class="btn btn-outline-warning badge-pill">Edit</a>
+									<a href="#" th:href="@{'/edit'+${it.accountNumber}}" class="btn btn-outline-warning badge-pill">Edit</a>
 								</div>
 								<div class="col">
-									<a href="#" th:href="@{'/delete/'+${it.accountNumber}}" class="btn btn-outline-danger badge-pill">Delete</a>
+									<a href="#" th:href="@{'/delete'+${it.accountNumber}}" class="btn btn-outline-danger badge-pill">Delete</a>
 								</div>
 							</div>
 						</td>
