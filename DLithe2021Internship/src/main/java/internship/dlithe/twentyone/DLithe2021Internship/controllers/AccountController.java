@@ -84,7 +84,7 @@ public class AccountController
 	public String added(Model model,@ModelAttribute("benef") Beneficiary benef)
 	{
 		benserv.add(benef);
-		model.addAttribute("info",benef.getName()+" has added");
+		model.addAttribute("info",benef.getName()+" has affected");
 		every=benserv.getAll();
 		model.addAttribute("all", every);
 		return "beneficiaries";
@@ -96,5 +96,16 @@ public class AccountController
 		Beneficiary ben=benserv.extractOne(id).orElse(new Beneficiary());
 		model.addAttribute("object", ben);
 		return "change";
+	}
+	
+	@RequestMapping("delete/{id}")
+	public String erase(Model model,@PathVariable("id") Long id)
+	{
+		Beneficiary ben=benserv.extractOne(id).orElse(new Beneficiary());
+		String tmp=benserv.remove(ben);
+		every=benserv.getAll();
+		model.addAttribute("info", tmp+" has deleted from your list");
+		model.addAttribute("all", every);
+		return "beneficiaries";
 	}
 }

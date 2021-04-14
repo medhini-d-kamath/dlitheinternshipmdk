@@ -35,14 +35,10 @@
 						<td th:text="${it.ifsc}">IFSC Code</td>
 						<td th:text="${it.bank}">Bank</td>
 						<td>
-							<div class="row">
-								<div class="col">
-									<a href="#" th:href="@{'/edit/'+${it.accountNumber}}" class="btn btn-outline-warning badge-pill">Edit</a>
-								</div>
-								<div class="col">
-									<a href="#" th:href="@{'/delete/'+${it.accountNumber}}" class="btn btn-outline-danger badge-pill">Delete</a>
-								</div>
-							</div>
+							<ol>
+								<li><a href="#" th:href="@{'/edit/'+${it.accountNumber}}" class="btn btn-outline-warning badge-pill">Edit</a></li>
+								<li><a href="#" th:href="@{'/delete/'+${it.accountNumber}}" class="btn btn-outline-danger badge-pill">Delete</a></li>
+							</ol>
 						</td>
 					</tr>
 				</tbody>

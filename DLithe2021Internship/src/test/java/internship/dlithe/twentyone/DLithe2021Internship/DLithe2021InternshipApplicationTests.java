@@ -3,13 +3,17 @@ package internship.dlithe.twentyone.DLithe2021Internship;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.internal.verification.Times;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.times;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -92,5 +96,13 @@ class DLithe2021InternshipApplicationTests
 		Beneficiary ben1=new Beneficiary(12323121212L, "Aravind", "ABCDE00001", "Indian Bank");
 		when(benrepo.save(ben)).thenReturn(ben);
 		assertNotEquals("Andhra bank", servben.add(ben).getBank());
+	}
+	
+	@Test
+	public void testDelete()
+	{
+		Beneficiary ben1=new Beneficiary(12323121212L, "Aravind", "ABCDE00001", "Indian Bank");
+		servben.remove(ben1);
+		verify(benrepo,times(1)).delete(ben1);
 	}
 }

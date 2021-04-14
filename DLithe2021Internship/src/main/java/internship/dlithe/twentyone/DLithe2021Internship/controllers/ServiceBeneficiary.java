@@ -28,4 +28,11 @@ public class ServiceBeneficiary
 	{
 		return repo.findById(id);
 	}
+	
+	public String remove(Beneficiary ben)
+	{
+		String hai=ben.getName();
+		repo.delete(ben);
+		return hai;
+	}
 }
