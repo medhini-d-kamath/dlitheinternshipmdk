@@ -17,6 +17,8 @@ import internship.dlithe.twentyone.DLithe2021Internship.model.Beneficiary;
 @Controller
 public class AccountController 
 {
+
+	Account loggedPerson;
 	
 	List<Beneficiary> every;
 	
@@ -35,10 +37,10 @@ public class AccountController
 	@RequestMapping(value="/log",method=RequestMethod.POST)
 	public String logging(Model model,@RequestParam("user") Long user,@RequestParam("pass") String pass)
 	{
-		Account tmp=service.fetchOne(user);
-		if(tmp.getPassword()!=null&&tmp.getPassword().equals(pass))
+		loggedPerson=service.fetchOne(user);
+		if(loggedPerson.getPassword()!=null&&loggedPerson.getPassword().equals(pass))
 		{
-			model.addAttribute("username", tmp.getAccHolder());
+			model.addAttribute("username", loggedPerson.getAccHolder());
 			return "home";
 		}
 		else
@@ -67,7 +69,8 @@ public class AccountController
 	@RequestMapping("/manage")
 	public String managing(Model model)
 	{
-		every=benserv.getAll();
+		//every=benserv.getAll();
+		every=benserv.getEveryOneByAccount(loggedPerson.getAccNum());
 		model.addAttribute("all", every);
 		return "beneficiaries";
 	}
@@ -83,9 +86,12 @@ public class AccountController
 	@RequestMapping(value="/keep",method=RequestMethod.POST)
 	public String added(Model model,@ModelAttribute("benef") Beneficiary benef)
 	{
+		System.out.println(loggedPerson.getAccHolder()+" going have new beneficiary");
+		benef.setAccount(loggedPerson);
 		benserv.add(benef);
 		model.addAttribute("info",benef.getName()+" has affected");
-		every=benserv.getAll();
+		//every=benserv.getAll();
+		every=benserv.getEveryOneByAccount(loggedPerson.getAccNum());
 		model.addAttribute("all", every);
 		return "beneficiaries";
 	}
@@ -103,7 +109,8 @@ public class AccountController
 	{
 		Beneficiary ben=benserv.extractOne(id).orElse(new Beneficiary());
 		String tmp=benserv.remove(ben);
-		every=benserv.getAll();
+		//every=benserv.getAll();
+		every=benserv.getEveryOneByAccount(loggedPerson.getAccNum());
 		model.addAttribute("info", tmp+" has deleted from your list");
 		model.addAttribute("all", every);
 		return "beneficiaries";

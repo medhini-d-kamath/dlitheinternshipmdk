@@ -24,6 +24,11 @@ public class ServiceBeneficiary
 		return repo.findAll();
 	}
 	
+	public List<Beneficiary> getEveryOneByAccount(Long accnum)
+	{
+		return repo.findAllByAccountAccNum(accnum);
+	}
+	
 	public Optional<Beneficiary> extractOne(Long id)
 	{
 		return repo.findById(id);

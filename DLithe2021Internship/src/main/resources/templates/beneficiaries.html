@@ -30,14 +30,14 @@
 				</thead>
 				<tbody class="bg-primary text-light">
 					<tr th:each="it:${all}">
-						<td th:text="${it.accountNumber}">Account Number</td>
+						<td th:text="${it.number}">Account Number</td>
 						<td th:text="${it.name}">Name</td>
 						<td th:text="${it.ifsc}">IFSC Code</td>
 						<td th:text="${it.bank}">Bank</td>
 						<td>
 							<ol>
-								<li><a href="#" th:href="@{'/edit/'+${it.accountNumber}}" class="btn btn-outline-warning badge-pill">Edit</a></li>
-								<li><a href="#" th:href="@{'/delete/'+${it.accountNumber}}" class="btn btn-outline-danger badge-pill">Delete</a></li>
+								<li><a href="#" th:href="@{'/edit/'+${it.number}}" class="btn btn-outline-warning badge-pill">Edit</a></li>
+								<li><a href="#" th:href="@{'/delete/'+${it.number}}" class="btn btn-outline-danger badge-pill">Delete</a></li>
 							</ol>
 						</td>
 					</tr>
