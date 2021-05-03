@@ -1,9 +1,9 @@
-package internship.dlithe.twentyone.DLithe2021Internship.controllers;
+package internship.dlithe.twentyone.Dlithe2021Internship.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import internship.dlithe.twentyone.DLithe2021Internship.model.Account;
+import internship.dlithe.twentyone.Dlithe2021Internship.model.Account;
 
 @Service
 public class ServiceAccount 

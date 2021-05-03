@@ -1,4 +1,4 @@
-package internship.dlithe.twentyone.DLithe2021Internship.model;
+package internship.dlithe.twentyone.Dlithe2021Internship.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 //@Table(name = "holder")

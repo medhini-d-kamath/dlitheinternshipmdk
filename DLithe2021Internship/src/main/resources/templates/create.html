@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-	<h1 class="display-4 text-center">Adding new beneficiary</h1>
+	<h1 class="display-4" class="text-center">Adding new beneficiary</h1>
 	<div class="row justify-content-center align-items-center">
 		<div class="text-primary">
 			<form action="#" th:action="@{/keep}" th:object=${object} method="post">
@@ -21,8 +21,8 @@
 					<input type="text" name="name" placeholder="Beneficiary name" class="form-control">
 				</div>
 				<div class="form-group">
-					<label for="number">Enter the beneficiary account number: </label>
-					<input type="text" name="number" placeholder="Beneficiary account number" class="form-control">
+					<label for="accountNumber">Enter the beneficiary account number: </label>
+					<input type="text" name="accountNumber" placeholder="Beneficiary account number" class="form-control">
 				</div>
 				<div class="form-group">
 					<label for="ifsc">Enter the beneficiary ifsc: </label>

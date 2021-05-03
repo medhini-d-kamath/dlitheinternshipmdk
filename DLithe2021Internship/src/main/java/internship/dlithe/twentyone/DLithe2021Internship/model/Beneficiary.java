@@ -1,32 +1,18 @@
-package internship.dlithe.twentyone.DLithe2021Internship.model;
+package internship.dlithe.twentyone.Dlithe2021Internship.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Beneficiary 
 {
-	/*
-	 * @Id @GeneratedValue(strategy = GenerationType.TABLE) private Integer id;
-	 */
 	@Id
-	private Long number;
+	private Long accountNumber;
 	private String name, ifsc, bank;
-	@ManyToOne
-	private Account account;
-	public Account getAccount() {
-		return account;
-	}
-	public void setAccount(Account account) {
-		this.account = account;
-	}
 	@Override
 	public String toString() {
-		return "Beneficiary [accountNumber=" + number + ", name=" + name + ", ifsc=" + ifsc + ", bank=" + bank
-				+ ", account=" + account + "]";
+		return "Beneficiary [accountNumber=" + accountNumber + ", name=" + name + ", ifsc=" + ifsc + ", bank=" + bank
+				+ "]";
 	}
 	public Beneficiary() {
 		super();
@@ -34,16 +20,16 @@ public class Beneficiary
 	}
 	public Beneficiary(Long accountNumber, String name, String ifsc, String bank) {
 		super();
-		this.number = accountNumber;
+		this.accountNumber = accountNumber;
 		this.name = name;
 		this.ifsc = ifsc;
 		this.bank = bank;
 	}
-	public Long getNumber() {
-		return number;
+	public Long getAccountNumber() {
+		return accountNumber;
 	}
-	public void setNumber(Long accountNumber) {
-		this.number = accountNumber;
+	public void setAccountNumber(Long accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 	public String getName() {
 		return name;
